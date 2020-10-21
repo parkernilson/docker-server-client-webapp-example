@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+    # Our flask server
+    flask-app:
+        build: ./flask-app
+        environment:
+            FLASK_APP: "./src/server.py"
+            FLASK_ENV: "development"
+        volumes:
+            - ./flask-app/src:/code/src
+        ports:
+            - 5000:5000
+    # Our front end svelte app
+    svelte-app:
+        build: ./svelte-app
+        volumes:
+            - ./svelte-app/src:/code/src
+        ports:
+            - 5001:8080
+        links:
+            - "flask-app"
+        depends_on:
+            - "flask-app"

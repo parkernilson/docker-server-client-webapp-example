@@ -1,0 +1,4 @@
+node_modules/
+
+# temporarily disable src from copy to image so we can use volume for live reloads in dev server
+src/
